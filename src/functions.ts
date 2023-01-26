@@ -6,8 +6,7 @@ export const createIframeNode = (roomId: string) => {
   const appId = `iframe-${roomId}`;
   const iFrameNode = document.createElement('iframe');
   iFrameNode.id = appId;
-  //   iFrameNode.className = 'pokeInfo_iframe';
-  iFrameNode.style.padding = ' 36px 8px 0';
+  iFrameNode.style.border = 'none';
   iFrameNode.style.minHeight = '250px';
   iFrameNode.style.width = '100%';
 

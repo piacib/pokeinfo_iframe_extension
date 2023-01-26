@@ -67,8 +67,7 @@ window.addEventListener('load', () => {
   const body = document.querySelector('body');
   // checks mutations for a different pathname
   const observer = new MutationObserver(function (mutations) {
-    mutations.forEach(function (mutation) {
-      console.log('mutation', mutation);
+    mutations.forEach(function () {
       if (currentPathname !== document.location.pathname) {
         console.log('pathchanged', getBattleRoomID(document.location.pathname));
         currentPathname = document.location.pathname;

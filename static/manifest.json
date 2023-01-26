@@ -1,6 +1,6 @@
 {
-  "name": "chrome-extension-webpack",
-  "description": "My basic Chrome extension",
+  "name": "Pokeinfo Extension",
+  "description": "Pokeinfo Extension",
   "version": "0.1.0",
   "manifest_version": 3,
   "background": {
@@ -8,10 +8,10 @@
   },
   "content_scripts": [
     {
-      "js": ["contentScript.js"],      
+      "js": ["contentScript.js"],
+      "css": ["styles/contentScript.css"],
       "run_at": "document_idle",
       "matches": ["https://play.pokemonshowdown.com/*"]
-
     }
   ],
   "permissions": ["storage", "scripting"],
@@ -20,7 +20,7 @@
     "open_in_tab": true
   },
   "action": {
-    "default_title": "My basic Chrome extension",
+    "default_title": "Pokeinfo Extension",
     "default_popup": "popup.html",
     "default_icon": {
       "16": "/icons/16x.png",

@@ -4,14 +4,12 @@ import {
   createIframeContainer,
   getBattleRoomID,
 } from './functions';
-
+import '../styles/iframe.scss';
 const addDisplay = (battleRoom: HTMLElement) => {
-  console.log('adding display', battleRoom);
   if (!battleRoom) {
     // not in battle/ not random battle, return early
     return;
   }
-  console.log('battle room', battleRoom);
   /** room-battle-${string}-${number} */
   const roomId: string = battleRoom.id;
   if (!roomId.startsWith('room-battle')) {
@@ -21,7 +19,6 @@ const addDisplay = (battleRoom: HTMLElement) => {
 };
 let activeBattleRooms: string[] = [];
 const resetBattleRooms = () => {
-  console.log('resetting');
   const innerUlQuery = document.querySelector(
     '#header > div.tabbar.maintabbar > div',
   );
@@ -62,14 +59,12 @@ const checkBattleRooms = (roomId: string) => {
 // // checks for tab changes
 // let activeBattleRooms: string[] = [];
 window.addEventListener('load', () => {
-  console.log('adding load observer');
   let currentPathname = document.location.pathname;
   const body = document.querySelector('body');
   // checks mutations for a different pathname
   const observer = new MutationObserver(function (mutations) {
     mutations.forEach(function () {
       if (currentPathname !== document.location.pathname) {
-        console.log('pathchanged', getBattleRoomID(document.location.pathname));
         currentPathname = document.location.pathname;
         const roomId = getBattleRoomID(document.location.pathname);
         if (roomId) {
@@ -81,10 +76,8 @@ window.addEventListener('load', () => {
     });
   });
   if (body) {
-    console.log('load observer added', currentPathname);
     const roomId = getBattleRoomID(document.location.pathname);
     if (roomId) {
-      console.log('refreshed into battle', roomId);
       checkBattleRooms(roomId);
     }
     observer.observe(body, observerConfig);

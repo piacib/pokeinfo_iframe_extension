@@ -6,10 +6,7 @@ export const createIframeNode = (roomId: string) => {
   const appId = `iframe-${roomId}`;
   const iFrameNode = document.createElement('iframe');
   iFrameNode.id = appId;
-  iFrameNode.style.border = 'none';
-  iFrameNode.style.minHeight = '250px';
-  iFrameNode.style.width = '100%';
-
+  iFrameNode.className = 'pokeinfo-iframe';
   iFrameNode.src = `https://piacib.github.io/pokeinfo/?battleId=${window.location.pathname.slice(
     1,
   )}`;

@@ -3,8 +3,21 @@ import {
   observerConfig,
   createIframeContainer,
   getBattleRoomID,
+  createButton,
 } from './functions';
 import '../styles/iframe.scss';
+const addHideButton = (battleRoom: HTMLElement) => {
+  if (!battleRoom) {
+    // not in battle/ not random battle, return early
+    return;
+  }
+  /** room-battle-${string}-${number} */
+  const roomId: string = battleRoom.id;
+  if (!roomId.startsWith('room-battle')) {
+    return;
+  }
+  createButton(roomId, battleRoom);
+};
 const addDisplay = (battleRoom: HTMLElement) => {
   if (!battleRoom) {
     // not in battle/ not random battle, return early
@@ -16,6 +29,7 @@ const addDisplay = (battleRoom: HTMLElement) => {
     return;
   }
   createIframeContainer(roomId, battleRoom);
+  addHideButton(battleRoom);
 };
 let activeBattleRooms: string[] = [];
 const resetBattleRooms = () => {

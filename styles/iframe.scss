@@ -1,5 +1,14 @@
 .pokeinfo-iframe {
   border: none;
-  min-height: 250px;
+  height: 700px;
+
   width: 100%;
+  position: sticky;
+  top: 0;
+}
+.iframe-toggle {
+  position: sticky;
+  top: 0;
+  margin-left: 150px;
+  z-index: 1;
 }

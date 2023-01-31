@@ -3,9 +3,9 @@ export const observerConfig = {
   subtree: true,
 };
 export const createIframeNode = (roomId: string) => {
-  const appId = `iframe-${roomId}`;
+  const iframeId = `iframe-${roomId}`;
   const iFrameNode = document.createElement('iframe');
-  iFrameNode.id = appId;
+  iFrameNode.id = iframeId;
   iFrameNode.className = 'pokeinfo-iframe';
   iFrameNode.src = `https://piacib.github.io/pokeinfo/?battleId=${window.location.pathname.slice(
     1,
@@ -16,25 +16,19 @@ export const createIframeContainer = (
   roomId: string,
   battleRoom: HTMLElement,
 ) => {
-  const appId = `iframe-${roomId}`;
-  const rootEl = document.getElementById(appId);
+  const iframeId = `iframe-${roomId}`;
+  const rootEl = document.getElementById(iframeId);
   if (rootEl) {
     // element is already added, return early
     return;
   }
-
-  //   .pokeInfo_iframe {
-  // padding: 36px 8px 0;
-  // min-height: 250px;
-  // width: 100%;
-  //   }
 
   const iFrameNode = createIframeNode(roomId);
   const battleLog = battleRoom.getElementsByClassName('battle-log');
   if (battleLog && battleLog[0]) {
     battleLog[0].prepend(iFrameNode);
   }
-  return document.getElementById(appId);
+  return;
 };
 export const getBattleRoomID = (pathname: string) => {
   // takes in string returns what follows the last "/"
@@ -43,4 +37,23 @@ export const getBattleRoomID = (pathname: string) => {
     return regexMatch[0];
   }
   return '';
+};
+export const createButton = (roomId: string, battleRoom: HTMLElement) => {
+  const iframeId = `iframe-${roomId}`;
+
+  const button = document.createElement('button');
+  button.innerHTML = 'Pokeinfo';
+  button.className='iframe-toggle'
+  button.onclick = () => {
+    const height = document.getElementById(iframeId).style.height;
+    if (height !== '0px') {
+      document.getElementById(iframeId).style.height = '0px';
+    } else {
+      document.getElementById(iframeId).style.height = '700px';
+    }
+  };
+  const battleLog = battleRoom.getElementsByClassName('battle-log');
+  if (battleLog && battleLog[0]) {
+    battleLog[0].prepend(button);
+  }
 };

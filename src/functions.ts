@@ -12,7 +12,6 @@ export const createIframeNode = (roomId: string) => {
     isExtension: 'true',
   };
   const searchParams = new URLSearchParams(paramsObj);
-
   iFrameNode.src = `https://piacib.github.io/pokeinfo/?${searchParams.toString()}`;
   return iFrameNode;
 };
@@ -46,8 +45,13 @@ export const createButton = (roomId: string, battleRoom: HTMLElement) => {
   const iframeId = `iframe-${roomId}`;
 
   const button = document.createElement('button');
-  button.innerHTML = 'Pokeinfo';
-  button.className = 'iframe-toggle';
+  const div = document.createElement('div');
+  const innerDiv = document.createElement('div');
+  div.className = 'pokeball__button';
+  innerDiv.className = 'pokeball_center';
+  div.appendChild(innerDiv);
+  button.appendChild(div);
+  button.className = 'iframe-toggle pokeball';
   button.onclick = () => {
     const height = document.getElementById(iframeId).style.height;
     if (height !== '0px') {

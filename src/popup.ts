@@ -1,8 +1,8 @@
 import '../styles/popup.scss';
 
-document.getElementById('go-to-options').addEventListener('click', () => {
-  chrome.runtime.openOptionsPage();
-});
+// document.getElementById('go-to-options').addEventListener('click', () => {
+//   chrome.runtime.openOptionsPage();
+// });
 
 const query = { active: true, currentWindow: true };
 function callback(tabs: chrome.tabs.Tab[]) {

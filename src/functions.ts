@@ -2,17 +2,21 @@ export const observerConfig = {
   childList: true,
   subtree: true,
 };
+const siteUrl = new URL('https://piacib.github.io/pokeinfo/');
 export const createIframeNode = (roomId: string) => {
   const iframeId = `iframe-${roomId}`;
   const iFrameNode = document.createElement('iframe');
   iFrameNode.id = iframeId;
   iFrameNode.className = 'pokeinfo-iframe';
-  const paramsObj = {
-    battleId: window.location.pathname.slice(1),
-    isExtension: 'true',
-  };
-  const searchParams = new URLSearchParams(paramsObj);
-  iFrameNode.src = `https://piacib.github.io/pokeinfo/?${searchParams.toString()}`;
+  const battleId = window.location.pathname.slice(1);
+  
+  siteUrl.searchParams.append('battleId', battleId);
+  siteUrl.searchParams.append('isExtension', 'true');
+  if (battleId.split('-').length > 3) {
+    siteUrl.searchParams.append('noSpectators', 'true');
+  }
+
+  iFrameNode.src = siteUrl.href;
   return iFrameNode;
 };
 export const createIframeContainer = (

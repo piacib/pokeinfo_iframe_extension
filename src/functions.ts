@@ -9,13 +9,13 @@ export const createIframeNode = (roomId: string) => {
   iFrameNode.id = iframeId;
   iFrameNode.className = 'pokeinfo-iframe';
   const battleId = window.location.pathname.slice(1);
-  
+  // create url
   siteUrl.searchParams.append('battleId', battleId);
   siteUrl.searchParams.append('isExtension', 'true');
   if (battleId.split('-').length > 3) {
     siteUrl.searchParams.append('noSpectators', 'true');
   }
-
+  // assign url with params
   iFrameNode.src = siteUrl.href;
   return iFrameNode;
 };

@@ -14,7 +14,7 @@
       "matches": ["https://play.pokemonshowdown.com/*"]
     }
   ],
-  "permissions": ["storage", "scripting", "tabs"],
+  "permissions": ["scripting", "tabs"],
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true

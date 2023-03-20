@@ -2,8 +2,9 @@ export const observerConfig = {
   childList: true,
   subtree: true,
 };
-const siteUrl = new URL('https://piacib.github.io/pokeinfo/');
 export const createIframeNode = (roomId: string) => {
+  const siteUrl = new URL('https://piacib.github.io/pokeinfo/');
+  console.log('siteUrl', siteUrl);
   const iframeId = `iframe-${roomId}`;
   const iFrameNode = document.createElement('iframe');
   iFrameNode.id = iframeId;
@@ -15,6 +16,7 @@ export const createIframeNode = (roomId: string) => {
   if (battleId.split('-').length > 3) {
     siteUrl.searchParams.append('noSpectators', 'true');
   }
+  console.log('siteUrl.searchParams', siteUrl.searchParams);
   // assign url with params
   iFrameNode.src = siteUrl.href;
   return iFrameNode;
@@ -61,7 +63,7 @@ export const createButton = (roomId: string, battleRoom: HTMLElement) => {
     if (height !== '0px') {
       document.getElementById(iframeId).style.height = '0px';
     } else {
-      document.getElementById(iframeId).style.height = '700px';
+      document.getElementById(iframeId).style.height = '100%';
     }
   };
   const battleLog = battleRoom.getElementsByClassName('battle-log');

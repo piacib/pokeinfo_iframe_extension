@@ -47,17 +47,19 @@ export const getBattleRoomID = (pathname: string) => {
   }
   return '';
 };
-export const createButton = (roomId: string, battleRoom: HTMLElement) => {
-  const iframeId = `iframe-${roomId}`;
-
+const generateButton = (
+  iframeId: string,
+  buttonClassName = 'iframe-toggle pokeball',
+) => {
   const button = document.createElement('button');
   const div = document.createElement('div');
   const innerDiv = document.createElement('div');
-  div.className = 'pokeball__button';
+  div.className = 'pokeball_button';
   innerDiv.className = 'pokeball_center';
   div.appendChild(innerDiv);
   button.appendChild(div);
-  button.className = 'iframe-toggle pokeball';
+  button.className = buttonClassName;
+  button.id = iframeId + 'button';
   button.onclick = () => {
     const height = document.getElementById(iframeId).style.height;
     if (height !== '0px') {
@@ -66,8 +68,57 @@ export const createButton = (roomId: string, battleRoom: HTMLElement) => {
       document.getElementById(iframeId).style.height = '100%';
     }
   };
+  return button;
+};
+export const createButton = (roomId: string, battleRoom: HTMLElement) => {
+  const iframeId = `iframe-${roomId}`;
+  const button = generateButton(iframeId);
   const battleLog = battleRoom.getElementsByClassName('battle-log');
   if (battleLog && battleLog[0]) {
     battleLog[0].prepend(button);
   }
 };
+const appendPopOver = (container: HTMLElement) => {
+  const pop_over_text = document.createElement('div');
+  pop_over_text.className = 'pop_over_text';
+
+  const pop_over_triangle = document.createElement('div');
+  pop_over_triangle.className = 'pop_over_triangle';
+
+  const pop_over_inner_triangle = document.createElement('div');
+  pop_over_inner_triangle.className = 'pop_over_inner_triangle';
+
+  const text = document.createElement('p');
+  text.innerText = noSpecsText;
+  pop_over_text.appendChild(pop_over_triangle);
+  pop_over_text.appendChild(pop_over_inner_triangle);
+  pop_over_text.appendChild(text);
+  container.append(pop_over_text);
+};
+const noSpecsText =
+  'This Battle does not allow spectators. Double click this button to refresh the extension.';
+export const createNoSpectatorsButton = (
+  roomId: string,
+  battleRoom: HTMLElement,
+) => {
+  const iframeId = `iframe-${roomId}`;
+  const buttonClassName = 'pop_over_button pokeball';
+  const button = generateButton(iframeId, buttonClassName);
+  const container = document.createElement('div');
+  container.className = 'pop_over_container iframe-toggle';
+  container.appendChild(button);
+  appendPopOver(container);
+  const battleLog = battleRoom.getElementsByClassName('battle-log');
+  if (battleLog && battleLog[0]) {
+    battleLog[0].prepend(container);
+  }
+};
+
+// <div class="pop_over_container">
+//       <button class="pop_over_button">Click Me!!</button>
+//       <div class="pop_over_text">
+//         <div class="pop_over_triangle"></div>
+//         <div class="pop_over_inner_triangle"></div>
+//         <p>Pop Over Text</p>
+//       </div>
+//     </div>

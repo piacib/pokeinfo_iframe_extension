@@ -58,7 +58,7 @@ $size: 25px;
 $buttonSize: math.div($size, 3.333333);
 $centered: math.div($size, 6.66666667);
 
-.pokeball__button {
+.pokeball_button {
   position: absolute;
   top: calc(50% - $centered);
   left: calc(50% - $centered);
@@ -140,4 +140,75 @@ $innerButtonSize: $buttonSize - math.div($buttonSize, 10);
   left: 0;
   margin: 0;
   z-index: 1;
+}
+
+/*  
+- create container with relative positioning
+- position button top 0 right 0 then translate up 50% 
+  so its center is centered on container 
+- position pop up the same but with left 0 
+- set margin to desired triangle size 
+- add triangle
+- set pop up to appear when button is focused
+  */
+.pop_over_text {
+  // display: none;
+  --triangle-size: 20px;
+  --background-color: white;
+  left: $size;
+}
+.pop_over_container {
+  position: sticky;
+  margin-top: 20px;
+  top: 45px;
+}
+.pop_over_button {
+  position: absolute;
+  top: 0;
+
+  left: 0;
+
+  translate: 0 -50%;
+  white-space: nowrap;
+}
+.pop_over_button + .pop_over_text {
+  --border-width: 2px;
+  position: absolute;
+  display: block;
+  margin-left: var(--triangle-size);
+  background-color: var(--background-color);
+  translate: 0 -50%;
+  min-width: 100px;
+  padding: 0 1rem;
+  border: var(--border-width) solid black;
+  top: 50%;
+  width: fit-content;
+}
+.pop_over_text .pop_over_triangle {
+  --left: calc(var(--border-width) + var(--triangle-size));
+  position: absolute;
+  top: 50%;
+  left: calc(var(--left) * -1);
+  left: -22px;
+  translate: 0 -50%;
+  width: 0;
+  height: 0;
+  border-top: var(--triangle-size) solid transparent;
+  border-bottom: var(--triangle-size) solid transparent;
+  border-right: var(--triangle-size) solid black;
+}
+.pop_over_inner_triangle {
+  --inner-triangle-size: calc(var(--triangle-size) - var(--border-width));
+  position: absolute;
+  top: 50%;
+  left: calc(var(--inner-triangle-size) * -1);
+  translate: 0 -50%;
+  width: 0;
+  height: 0;
+  border-top: var(--inner-triangle-size) solid transparent;
+  border-bottom: var(--inner-triangle-size) solid transparent;
+  border-right: var(--inner-triangle-size) solid var(--background-color);
+}
+.pop_over_container .pokeball {
+  position: absolute;
 }

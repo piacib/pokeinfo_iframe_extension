@@ -4,6 +4,7 @@ import {
   createIframeContainer,
   getBattleRoomID,
   createButton,
+  createNoSpectatorsButton,
 } from './functions';
 import '../styles/iframe.scss';
 const addHideButton = (battleRoom: HTMLElement) => {
@@ -14,6 +15,10 @@ const addHideButton = (battleRoom: HTMLElement) => {
   /** room-battle-${string}-${number} */
   const roomId: string = battleRoom.id;
   if (!roomId.startsWith('room-battle')) {
+    return;
+  }
+  if (roomId.split('-').length > 3) {
+    createNoSpectatorsButton(roomId, battleRoom);
     return;
   }
   createButton(roomId, battleRoom);

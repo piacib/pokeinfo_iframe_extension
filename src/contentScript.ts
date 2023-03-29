@@ -17,7 +17,8 @@ const addHideButton = (battleRoom: HTMLElement) => {
   if (!roomId.startsWith('room-battle')) {
     return;
   }
-  if (roomId.split('-').length > 3) {
+  console.log('roomid', roomId.split('-'));
+  if (roomId.split('-').length > 4) {
     createNoSpectatorsButton(roomId, battleRoom);
     return;
   }

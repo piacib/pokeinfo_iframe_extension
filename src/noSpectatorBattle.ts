@@ -77,7 +77,25 @@ const updateIframeTeams = (
     iframe.src = url.href;
   }
 };
+const noSpecsText =
+  'This Battle does not allow spectators. Some features, like auto refresh, are not avaialable.';
+export const generatePopOver = () => {
+  const pop_over_text = document.createElement('div');
+  pop_over_text.className = 'pop_over_text';
 
+  const pop_over_triangle = document.createElement('div');
+  pop_over_triangle.className = 'pop_over_triangle';
+
+  const pop_over_inner_triangle = document.createElement('div');
+  pop_over_inner_triangle.className = 'pop_over_inner_triangle';
+
+  const text = document.createElement('p');
+  text.innerText = noSpecsText;
+  pop_over_text.appendChild(pop_over_triangle);
+  pop_over_text.appendChild(pop_over_inner_triangle);
+  pop_over_text.appendChild(text);
+  return pop_over_text;
+};
 export const getTeamsOnNewTurn = (iframeId: string) => {
   const teams = getTeamFromAria();
   if (teams) {

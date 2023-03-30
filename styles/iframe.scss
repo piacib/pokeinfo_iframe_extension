@@ -151,64 +151,64 @@ $innerButtonSize: $buttonSize - math.div($buttonSize, 10);
 - add triangle
 - set pop up to appear when button is focused
   */
+
+@keyframes cssAnimation {
+  0% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes cssDisappear {
+  to {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+}
+$triangle_size: 12px;
+$border_width: 2px;
+
 .pop_over_text {
-  // display: none;
-  --triangle-size: 20px;
-  --background-color: white;
-  left: $size;
-}
-.pop_over_container {
   position: sticky;
-  margin-top: 20px;
-  top: 45px;
-}
-.pop_over_button {
-  position: absolute;
-  top: 0;
-
+  top: $size;
+  border-radius: 3px;
   left: 0;
-
-  translate: 0 -50%;
-  white-space: nowrap;
-}
-.pop_over_button + .pop_over_text {
-  --border-width: 2px;
-  position: absolute;
-  display: block;
-  margin-left: var(--triangle-size);
-  background-color: var(--background-color);
-  translate: 0 -50%;
-  min-width: 100px;
+  margin-left: $triangle_size + $size;
+  z-index: 1;
+  width: 150px;
+  margin-left: $size + $triangle_size;
+  background-color: white;
+  animation: cssAnimation 0s ease-in 5s forwards,
+    cssDisappear 0s ease-in 5s forwards;
   padding: 0 1rem;
-  border: var(--border-width) solid black;
-  top: 50%;
-  width: fit-content;
+  border: $border_width solid black;
 }
 .pop_over_text .pop_over_triangle {
-  --left: calc(var(--border-width) + var(--triangle-size));
   position: absolute;
-  top: 50%;
-  left: calc(var(--left) * -1);
-  left: -22px;
-  translate: 0 -50%;
+  top: $border_width * -1;
+  left: $triangle_size * -1;
   width: 0;
   height: 0;
-  border-top: var(--triangle-size) solid transparent;
-  border-bottom: var(--triangle-size) solid transparent;
-  border-right: var(--triangle-size) solid black;
+  border-top: $triangle_size solid transparent;
+  border-bottom: $triangle_size solid transparent;
+
+  border-right: $triangle_size solid black;
 }
+$inner_triangle_size: $triangle_size - $border_width;
 .pop_over_inner_triangle {
-  --inner-triangle-size: calc(var(--triangle-size) - var(--border-width));
   position: absolute;
-  top: 50%;
-  left: calc(var(--inner-triangle-size) * -1);
-  translate: 0 -50%;
+  top: 0;
+  left: $inner_triangle_size * -1;
   width: 0;
   height: 0;
-  border-top: var(--inner-triangle-size) solid transparent;
-  border-bottom: var(--inner-triangle-size) solid transparent;
-  border-right: var(--inner-triangle-size) solid var(--background-color);
-}
-.pop_over_container .pokeball {
-  position: absolute;
+
+  border-top: $inner_triangle_size solid transparent;
+  border-bottom: $inner_triangle_size solid transparent;
+  border-right: $inner_triangle_size solid white;
 }

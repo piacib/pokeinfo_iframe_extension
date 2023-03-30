@@ -1,5 +1,5 @@
 import { addNewTurnMutationObserver } from './chatMutationObserver';
-import { getTeamsOnNewTurn } from './noSpectatorBattle';
+import { generatePopOver, getTeamsOnNewTurn } from './noSpectatorBattle';
 
 export const observerConfig = {
   childList: true,
@@ -86,8 +86,10 @@ export const createButton = (
 ) => {
   const iframeId = `iframe-${roomId}`;
   const button = generateButton(iframeId);
-  prependToBattleLog(button, battleRoom);
   if (!spectatorsAllowed) {
     addNewTurnMutationObserver(battleRoom, () => getTeamsOnNewTurn(iframeId));
+    const popOver = generatePopOver();
+    prependToBattleLog(popOver, battleRoom);
   }
+  prependToBattleLog(button, battleRoom);
 };

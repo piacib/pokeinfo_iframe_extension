@@ -4,7 +4,6 @@ import {
   createIframeContainer,
   getBattleRoomID,
   createButton,
-  createNoSpectatorsButton,
 } from './functions';
 import '../styles/iframe.scss';
 const addHideButton = (battleRoom: HTMLElement) => {
@@ -18,11 +17,8 @@ const addHideButton = (battleRoom: HTMLElement) => {
     return;
   }
   console.log('roomid', roomId.split('-'));
-  if (roomId.split('-').length > 4) {
-    createNoSpectatorsButton(roomId, battleRoom);
-    return;
-  }
-  createButton(roomId, battleRoom);
+  const spectatorsAllowed = roomId.split('-').length < 4;
+  createButton(roomId, battleRoom, spectatorsAllowed);
 };
 const addDisplay = (battleRoom: HTMLElement) => {
   if (!battleRoom) {

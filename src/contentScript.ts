@@ -16,7 +16,9 @@ const addHideButton = (battleRoom: HTMLElement) => {
   if (!roomId.startsWith('room-battle')) {
     return;
   }
-  createButton(roomId, battleRoom);
+  console.log('roomid', roomId.split('-'));
+  const spectatorsAllowed = roomId.split('-').length < 4;
+  createButton(roomId, battleRoom, spectatorsAllowed);
 };
 const addDisplay = (battleRoom: HTMLElement) => {
   if (!battleRoom) {

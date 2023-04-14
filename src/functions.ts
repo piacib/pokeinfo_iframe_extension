@@ -82,11 +82,11 @@ const prependToBattleLog = (element: HTMLElement, battleRoom: HTMLElement) => {
 export const createButton = (
   roomId: string,
   battleRoom: HTMLElement,
-  spectatorsAllowed = true,
 ) => {
+ 
   const iframeId = `iframe-${roomId}`;
   const button = generateButton(iframeId);
-  if (!spectatorsAllowed) {
+  if (!(roomId.split('-').length <= 4)) {
     addNewTurnMutationObserver(battleRoom, () => getTeamsOnNewTurn(iframeId));
     const popOver = generatePopOver();
     prependToBattleLog(popOver, battleRoom);

@@ -6,6 +6,7 @@ import {
   createButton,
 } from './functions';
 import '../styles/iframe.scss';
+import { ID } from './consts';
 const addHideButton = (battleRoom: HTMLElement) => {
   if (!battleRoom) {
     // not in battle/ not random battle, return early
@@ -15,7 +16,7 @@ const addHideButton = (battleRoom: HTMLElement) => {
   const roomId: string = battleRoom.id;
   if (!roomId.startsWith('room-battle')) {
     return;
-  } 
+  }
   createButton(roomId, battleRoom);
 };
 const addDisplay = (battleRoom: HTMLElement) => {
@@ -62,9 +63,7 @@ const checkBattleRooms = (roomId: string) => {
     return false;
   }
   activeBattleRooms.push(roomId);
-  const battleRoom = document.getElementById(
-    'room-' + document.location.pathname.slice(1),
-  );
+  const battleRoom = document.getElementById(ID.battleRoom);
   if (battleRoom) {
     addDisplay(battleRoom);
   }

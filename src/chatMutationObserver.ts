@@ -1,3 +1,5 @@
+import { CLASS } from './consts';
+
 const config = { attributes: true, childList: true, subtree: true };
 export const addNewTurnMutationObserver = (
   battleRoom: HTMLElement,
@@ -17,7 +19,7 @@ export const addNewTurnMutationObserver = (
   };
   const messageLogObserver = new MutationObserver(newTurnCallback);
 
-  const messageLog = battleRoom.getElementsByClassName('inner message-log');
+  const messageLog = battleRoom.getElementsByClassName(CLASS.messageLog);
   if (messageLog && messageLog[0]) {
     messageLogObserver.observe(messageLog[0], config);
   } else {

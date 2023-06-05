@@ -1,16 +1,17 @@
 import { addNewTurnMutationObserver } from './chatMutationObserver';
 import { generatePopOver, getTeamsOnNewTurn } from './noSpectatorBattle';
+import { CLASS, ID, TEXT, pokeinfoSiteURL } from './consts';
 
 export const observerConfig = {
   childList: true,
   subtree: true,
 };
 export const createIframeNode = (roomId: string) => {
-  const siteUrl = new URL('https://piacib.github.io/pokeinfo/');
-  const iframeId = `iframe-${roomId}`;
+  const siteUrl = new URL(pokeinfoSiteURL);
+  const iframeId = ID.iframe(roomId);
   const iFrameNode = document.createElement('iframe');
   iFrameNode.id = iframeId;
-  iFrameNode.className = 'pokeinfo-iframe';
+  iFrameNode.className = CLASS.iframe;
   const battleId = window.location.pathname.slice(1);
   // create url
   siteUrl.searchParams.append('battleId', battleId);
@@ -27,7 +28,7 @@ export const createIframeContainer = (
   roomId: string,
   battleRoom: HTMLElement,
 ) => {
-  const iframeId = `iframe-${roomId}`;
+  const iframeId = ID.iframe(roomId);
   const rootEl = document.getElementById(iframeId);
   if (rootEl) {
     // element is already added, return early
@@ -57,8 +58,7 @@ const toggleIframeHeight = (iframeId: string) => {
     document.getElementById(iframeId).style.height = '100%';
   }
 };
-const openExtensionText = 'Open Pokeinfo';
-const closeExtensionText = 'Close Pokeinfo';
+
 interface toggleButtonTextType {
   buttonId: string;
   iframeId: string;
@@ -67,20 +67,21 @@ const toggleButtonText = ({ buttonId, iframeId }: toggleButtonTextType) => {
   const button = document.getElementById(buttonId);
   const height = document.getElementById(iframeId).style.height;
   if (height === '0px') {
-    button.innerText = openExtensionText;
+    button.innerText = TEXT.openExtension;
     return;
   }
-  button.innerText = closeExtensionText;
+  button.innerText = TEXT.closeExtension;
 };
 const generateButton = (
   iframeId: string,
-  buttonClassName = 'iframe-toggle',
+  buttonClassName = CLASS.iframeToggle,
 ) => {
   const button = document.createElement('button');
-  button.innerText = closeExtensionText;
-  button.className = `${buttonClassName} button`;
-  const buttonId = iframeId + 'button';
+  button.innerText = TEXT.closeExtension;
+  button.className = `${buttonClassName} ${CLASS.showdownButtonClass}`;
+  const buttonId = ID.buttonIdGenerator(iframeId);
   button.id = buttonId;
+
   button.onclick = () => {
     toggleIframeHeight(iframeId);
     toggleButtonText({ buttonId, iframeId });
@@ -95,7 +96,7 @@ const prependToBattleLog = (element: HTMLElement, battleRoom: HTMLElement) => {
 };
 
 export const createButton = (roomId: string, battleRoom: HTMLElement) => {
-  const iframeId = `iframe-${roomId}`;
+  const iframeId = ID.iframe(roomId);
   const button = generateButton(iframeId);
   if (!(roomId.split('-').length <= 4)) {
     addNewTurnMutationObserver(battleRoom, () => getTeamsOnNewTurn(iframeId));

@@ -1,8 +1,14 @@
 {
-  "name": "Pokeinfo Showdown",
-  "description": "Pokeinfo Showdown",
+  "name": "Pokeinfo Extension",
+  "description": "Pokeinfo Extension",
   "version": "0.1.2",
   "manifest_version": 3,
+  "browser_specific_settings": {
+    "gecko": {
+      "strict_min_version": "0.1.1",
+      "id": "pokeinfo1010"
+    }
+  },
   "content_scripts": [
     {
       "js": ["contentScript.js"],

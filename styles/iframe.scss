@@ -6,132 +6,14 @@
   width: 100%;
   position: sticky;
   top: 0;
+  transition: all 0.35s ease-out;
 }
 
-.pokeball *,
-.pokeball::before,
-.pokeball::after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
 .center-on-page {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-/* Poké Styles */
-$size: 25px;
-.pokeball {
-  position: relative;
-  width: $size;
-  height: $size;
-  background: #fff;
-  border: math.div($size, 20) solid #000;
-  border-radius: 50%;
-  overflow: hidden;
-  box-shadow: inset -10px 10px 0 10px #ccc;
-  // animation: fall 0.25s ease-in-out;
-}
-.pokeball:hover {
-  animation: shake 1.25s cubic-bezier(0.36, 0.07, 0.19, 0.97) 3;
-}
-.pokeball::before,
-.pokeball::after {
-  content: '';
-  position: absolute;
-  left: 0;
-}
-.pokeball::before {
-  background: red;
-  width: 100%;
-  height: 50%;
-  top: 0;
-}
-.pokeball::after {
-  top: calc(50% - math.div($size, 10));
-  width: 100%;
-  height: math.div($size, 10);
-  background: #000;
-}
-$buttonSize: math.div($size, 3.333333);
-$centered: math.div($size, 6.66666667);
-
-.pokeball_button {
-  position: absolute;
-  top: calc(50% - $centered);
-  left: calc(50% - $centered);
-  width: $buttonSize;
-  height: $buttonSize;
-  // background: #7f8c8d;
-  background-color: #fff;
-  // border: math.div($size, 20) solid #7f8c8d;
-  border-radius: 50%;
-  z-index: 10;
-  box-shadow: 0 0 0 math.div($size, 20) black;
-}
-$innerButtonSize: $buttonSize - math.div($buttonSize, 10);
-.pokeball_center {
-  position: absolute;
-  width: $innerButtonSize;
-  height: $innerButtonSize;
-  top: calc(50% - math.div($innerButtonSize, 2));
-  left: calc(50% - math.div($innerButtonSize, 2));
-  border-radius: 100%;
-  border: 1px solid grey;
-  background-color: #fff;
-  // animation: blink 0.5s alternate 7;
-}
-
-.pokeball:hover .pokeball_center {
-  animation: blink 1s alternate 7;
-}
-/* Animation */
-@keyframes blink {
-  from {
-    background: #eee;
-  }
-  50% {
-    background: #e74c3c;
-  }
-  to {
-    background: #eee;
-  }
-}
-@keyframes shake {
-  0% {
-    transform: translate(0, 0) rotate(0);
-  }
-  20% {
-    transform: translate(-1 * math.div($size, 20), 0) rotate(-20deg);
-  }
-  30% {
-    transform: translate(math.div($size, 20), 0) rotate(20deg);
-  }
-  50% {
-    transform: translate(-1 * math.div($size, 20), 0) rotate(-10deg);
-  }
-  60% {
-    transform: translate(math.div($size, 20), 0) rotate(10deg);
-  }
-  100% {
-    transform: translate(0, 0) rotate(0);
-  }
-}
-@keyframes fall {
-  0% {
-    top: -1 * $size;
-  }
-  60% {
-    top: 0;
-  }
-  80% {
-    top: -1 * math.div($size, 10);
-  }
-  100% {
-    top: 0;
-  }
 }
 
 .iframe-toggle {
@@ -173,7 +55,7 @@ $innerButtonSize: $buttonSize - math.div($buttonSize, 10);
 }
 $triangle_size: 12px;
 $border_width: 2px;
-
+$size: 25px;
 .pop_over_text {
   position: sticky;
   top: $size;

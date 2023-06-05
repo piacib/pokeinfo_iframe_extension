@@ -61,7 +61,8 @@ const checkBattleRooms = (roomId: string) => {
     return false;
   }
   activeBattleRooms.push(roomId);
-  const battleRoom = document.getElementById(ID.battleRoom);
+  const battleRoom = document.getElementById(ID.battleRoom());
+
   if (battleRoom) {
     addDisplay(battleRoom);
   }

@@ -1,4 +1,4 @@
-import { CLASS, ID, TEXT } from './consts';
+import { CLASS, ID, TEXT, query } from './consts';
 
 const parseAriaLabelToArray = (pokemon: string) => {
   const splitArr = pokemon.split('(').map((x) => {
@@ -34,12 +34,12 @@ const getAriaLabelsFromElements = (
   return labels;
 };
 const getTeamFromAria = (): { user: string[]; opp: string[] } | false => {
-  const battleRoom = document.getElementById(ID.battleRoom);
+  const battleRoom = document.getElementById(ID.battleRoom());
 
   if (!battleRoom) {
     return false;
   }
-  const teamIcons = battleRoom.getElementsByClassName('teamicons');
+  const teamIcons = battleRoom.getElementsByClassName(query.teamIcons);
   if (!Array.from(teamIcons).filter((x) => x.children.length > 0).length) {
     return false;
   }

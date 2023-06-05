@@ -1,4 +1,4 @@
-import { CLASS } from './consts';
+import { TEXT, query } from './consts';
 
 const config = { attributes: true, childList: true, subtree: true };
 const isMutationNewTurn = (mutation: MutationRecord) =>
@@ -7,21 +7,19 @@ export const addNewTurnMutationObserver = (
   battleRoom: HTMLElement,
   callback: () => void,
 ) => {
-  console.log('adding mutation obs');
   const newTurnCallback = (mutationList: MutationRecord[]) => {
     for (const mutation of mutationList) {
       if (isMutationNewTurn(mutation)) {
-        console.log('new turn');
         callback();
       }
     }
   };
   const messageLogObserver = new MutationObserver(newTurnCallback);
 
-  const messageLog = battleRoom.getElementsByClassName(CLASS.messageLog);
+  const messageLog = battleRoom.getElementsByClassName(query.messageLog);
   if (messageLog && messageLog[0]) {
     messageLogObserver.observe(messageLog[0], config);
   } else {
-    console.error('no message log found');
+    console.error(TEXT.noMessageLogFound);
   }
 };

@@ -49,26 +49,41 @@ export const getBattleRoomID = (pathname: string) => {
   }
   return '';
 };
+const toggleIframeHeight = (iframeId: string) => {
+  const height = document.getElementById(iframeId).style.height;
+  if (height !== '0px') {
+    document.getElementById(iframeId).style.height = '0px';
+  } else {
+    document.getElementById(iframeId).style.height = '100%';
+  }
+};
+const openExtensionText = 'Open Pokeinfo';
+const closeExtensionText = 'Close Pokeinfo';
+interface toggleButtonTextType {
+  buttonId: string;
+  iframeId: string;
+}
+const toggleButtonText = ({ buttonId, iframeId }: toggleButtonTextType) => {
+  const button = document.getElementById(buttonId);
+  const height = document.getElementById(iframeId).style.height;
+  if (height === '0px') {
+    button.innerText = openExtensionText;
+    return;
+  }
+  button.innerText = closeExtensionText;
+};
 const generateButton = (
   iframeId: string,
-  buttonClassName = 'iframe-toggle pokeball',
+  buttonClassName = 'iframe-toggle',
 ) => {
   const button = document.createElement('button');
-  const div = document.createElement('div');
-  const innerDiv = document.createElement('div');
-  div.className = 'pokeball_button';
-  innerDiv.className = 'pokeball_center';
-  div.appendChild(innerDiv);
-  button.appendChild(div);
-  button.className = buttonClassName;
-  button.id = iframeId + 'button';
+  button.innerText = closeExtensionText;
+  button.className = `${buttonClassName} button`;
+  const buttonId = iframeId + 'button';
+  button.id = buttonId;
   button.onclick = () => {
-    const height = document.getElementById(iframeId).style.height;
-    if (height !== '0px') {
-      document.getElementById(iframeId).style.height = '0px';
-    } else {
-      document.getElementById(iframeId).style.height = '100%';
-    }
+    toggleIframeHeight(iframeId);
+    toggleButtonText({ buttonId, iframeId });
   };
   return button;
 };
@@ -79,11 +94,7 @@ const prependToBattleLog = (element: HTMLElement, battleRoom: HTMLElement) => {
   }
 };
 
-export const createButton = (
-  roomId: string,
-  battleRoom: HTMLElement,
-) => {
- 
+export const createButton = (roomId: string, battleRoom: HTMLElement) => {
   const iframeId = `iframe-${roomId}`;
   const button = generateButton(iframeId);
   if (!(roomId.split('-').length <= 4)) {

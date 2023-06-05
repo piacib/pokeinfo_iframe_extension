@@ -20,11 +20,14 @@ Welcome the Pokeinfo! Pokeinfo is an extension set up to connect to a pokemon sh
 
 ## Why I built the project this way
 
+- Leveraged TypeScript to future-proof the application and streamline error handling in the long run.
+- Utilized URLSearchParams as an efficient way to communicate with an external website and relay information.
+- Stored all text and document queries in a constants file to reduce chance of a breaking typo and create an easy spot to update text displayed to users.
 
 ## What I learned from this project
 
-This project has been a valuable learning experience for me, as it has allowed me to explore the world of web extensions and gain proficiency in developing them. Through this project, I have acquired knowledge and skills in using URL search parameters to establish communication and share information with external websites. 
+This project has been a valuable learning experience for me, as it has allowed me to explore the world of web extensions and gain proficiency in developing them. Through this project, I have acquired knowledge and skills in using URL search parameters to establish communication and share information with external websites.
 
 One of the key takeaways from this project has been the ability to manipulate web page elements using pure JavaScript. I have learned how to dynamically add, remove, and edit elements on a webpage, which has greatly enhanced my understanding of web development principles and practices.
 
-Additionally, I have gained insight into the procedures involved in submitting, reviewing, and updating applications for third-party platforms. This knowledge has proven invaluable as it has equipped me with the necessary know-how to navigate the app development process effectively. Being familiar with these procedures ensures that my applications meet the required standards and enables me to provide timely updates and bug fixes when necessary.
+Additionally, I have gained insight into the procedures involved in submitting, reviewing, and updating applications for third-party platforms. This knowledge has proven invaluable as it has equipped me with the necessary know-how to navigate the app development process effectively.

@@ -1,4 +1,4 @@
-import { CLASS, TEXT } from './consts';
+import { CLASS, ID, TEXT } from './consts';
 
 const parseAriaLabelToArray = (pokemon: string) => {
   const splitArr = pokemon.split('(').map((x) => {
@@ -34,9 +34,7 @@ const getAriaLabelsFromElements = (
   return labels;
 };
 const getTeamFromAria = (): { user: string[]; opp: string[] } | false => {
-  const battleRoom = document.getElementById(
-    'room-' + window.location.pathname.slice(1),
-  );
+  const battleRoom = document.getElementById(ID.battleRoom);
 
   if (!battleRoom) {
     return false;
@@ -68,7 +66,7 @@ const updateIframeTeams = (
 ) => {
   const iframe = document.getElementById(iframeId);
   if (!iframe || !(iframe instanceof HTMLIFrameElement)) {
-    console.error('no iframe element fround with id', iframeId);
+    console.error(TEXT.errorNoIframeFound(iframeId));
     return;
   }
   const src = iframe.src;

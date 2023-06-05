@@ -1,14 +1,16 @@
+interface ConstantValues<T> {
+  readonly [k: string]: T;
+}
 export const TEXT = {
   noSpecs:
     'This Battle does not allow spectators. Some features, like auto refresh, are not avaialable.',
   openExtension: 'Open Pokeinfo',
   closeExtension: 'Close Pokeinfo',
+  errorNoIframeFound: (iframeId: string) =>
+    `no iframe element found with id ${iframeId}`,
 };
 export const pokeinfoSiteURL = 'https://piacib.github.io/pokeinfo/';
 
-interface ConstantValues<T> {
-  readonly [k: string]: T;
-}
 export const CLASS: ConstantValues<string> = {
   iframe: 'pokeinfo-iframe',
   iframeToggle: 'iframe-toggle',

@@ -3,3 +3,4 @@ node_modules
 distributionZip
 .DS_Store
 .env
+.vscode

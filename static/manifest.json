@@ -1,11 +1,8 @@
 {
-  "name": "Pokeinfo Extension",
-  "description": "Pokeinfo Extension",
+  "name": "Pokeinfo Showdown",
+  "description": "Pokeinfo Showdown",
   "version": "0.1.2",
   "manifest_version": 3,
-  "background": {
-    "service_worker": "serviceWorker.js"
-  },
   "content_scripts": [
     {
       "js": ["contentScript.js"],

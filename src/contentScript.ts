@@ -6,7 +6,7 @@ import {
   createButton,
 } from './functions';
 import '../styles/iframe.scss';
-import { ID } from './consts';
+import { ID, query } from './consts';
 const addHideButton = (battleRoom: HTMLElement) => {
   if (!battleRoom) {
     // not in battle/ not random battle, return early
@@ -34,9 +34,7 @@ const addDisplay = (battleRoom: HTMLElement) => {
 };
 let activeBattleRooms: string[] = [];
 const resetBattleRooms = () => {
-  const innerUlQuery = document.querySelector(
-    '#header > div.tabbar.maintabbar > div',
-  );
+  const innerUlQuery = document.querySelector(query.innerUl);
   if (innerUlQuery?.childElementCount === 2) {
     // no active battles exist and array should be cleared
     activeBattleRooms = [];
@@ -70,7 +68,6 @@ const checkBattleRooms = (roomId: string) => {
   return true;
 };
 // // checks for tab changes
-// let activeBattleRooms: string[] = [];
 window.addEventListener('load', () => {
   let currentPathname = document.location.pathname;
   const body = document.querySelector('body');

@@ -15,8 +15,8 @@ Welcome the Pokeinfo! Pokeinfo is an extension set up to connect to a pokemon sh
 
 ## How to navigate this project
 
--- [custom javascript Mutation Observer to watch for new turns](https://github.com/piacib/pokeinfo_iframe_extension/blob/main/src/chatMutationObserver.ts)
--- [Parsing Data from HTML](https://github.com/piacib/pokeinfo_iframe_extension/blob/main/src/noSpectatorBattle.ts)
+- [Custom javascript Mutation Observer to watch for new turns](https://github.com/piacib/pokeinfo_iframe_extension/blob/main/src/chatMutationObserver.ts)
+- [Parsing Data from HTML](https://github.com/piacib/pokeinfo_iframe_extension/blob/main/src/noSpectatorBattle.ts)
 
 ## Why I built the project this way
 

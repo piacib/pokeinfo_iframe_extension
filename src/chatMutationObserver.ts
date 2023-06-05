@@ -1,6 +1,8 @@
 import { CLASS } from './consts';
 
 const config = { attributes: true, childList: true, subtree: true };
+const isMutationNewTurn = (mutation: MutationRecord) =>
+  mutation.type === 'childList' && mutation.addedNodes[0]?.nodeName === 'H2';
 export const addNewTurnMutationObserver = (
   battleRoom: HTMLElement,
   callback: () => void,
@@ -8,10 +10,7 @@ export const addNewTurnMutationObserver = (
   console.log('adding mutation obs');
   const newTurnCallback = (mutationList: MutationRecord[]) => {
     for (const mutation of mutationList) {
-      if (
-        mutation.type === 'childList' &&
-        mutation.addedNodes[0]?.nodeName === 'H2'
-      ) {
+      if (isMutationNewTurn(mutation)) {
         console.log('new turn');
         callback();
       }

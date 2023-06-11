@@ -1,26 +1,38 @@
 import { addNewTurnMutationObserver } from './chatMutationObserver';
 import { generatePopOver, getTeamsOnNewTurn } from './noSpectatorBattle';
-import { CLASS, ID, TEXT, pokeinfoSiteURL } from './consts';
+import { CLASS, ID, TEXT, generateExtensionHref } from './consts';
 
 export const observerConfig = {
   childList: true,
   subtree: true,
 };
+const generateUrl = () => {
+  const battleId = window.location.pathname.slice(1);
+  // create url
+  const href = generateExtensionHref(battleId);
+  const siteUrl = new URL(href);
+
+  if (battleId.split('-').length > 3) {
+    siteUrl.searchParams.append('noSpectators', 'true');
+  }
+  console.log('generateUrl', siteUrl);
+  return siteUrl;
+};
 export const createIframeNode = (roomId: string) => {
-  const siteUrl = new URL(pokeinfoSiteURL);
+  // const siteUrl = new URL(pokeinfoSiteURL);
   const iframeId = ID.iframe(roomId);
   const iFrameNode = document.createElement('iframe');
   iFrameNode.id = iframeId;
   iFrameNode.className = CLASS.iframe;
-  const battleId = window.location.pathname.slice(1);
-  // create url
-  siteUrl.searchParams.append('battleId', battleId);
-  siteUrl.searchParams.append('isExtension', 'true');
-  if (battleId.split('-').length > 3) {
-    siteUrl.searchParams.append('noSpectators', 'true');
-  }
+  // const battleId = window.location.pathname.slice(1);
+  // // create url
+  // siteUrl.searchParams.append('battleId', battleId);
+  // siteUrl.searchParams.append('isExtension', 'true');
+  // if (battleId.split('-').length > 3) {
+  //   siteUrl.searchParams.append('noSpectators', 'true');
+  // }
   // assign url with params
-  iFrameNode.src = siteUrl.href;
+  iFrameNode.src = generateUrl().href;
   return iFrameNode;
 };
 export const createIframeContainer = (

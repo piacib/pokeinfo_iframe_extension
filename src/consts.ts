@@ -11,6 +11,8 @@ export const TEXT = {
     `no iframe element found with id ${iframeId}`,
 };
 export const pokeinfoSiteURL = 'https://piacib.github.io/pokeinfo/';
+export const generateExtensionHref = (id: string) =>
+  `${pokeinfoSiteURL}#/extension/inBattle/${id}`;
 
 export const CLASS: ConstantValues<string> = {
   iframe: 'pokeinfo-iframe',

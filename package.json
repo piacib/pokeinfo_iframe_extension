@@ -1,5 +1,5 @@
 {
-  "name": "pokeinfo",
+  "name": "pokeinfo_showdown",
   "version": "0.0.1",
   "description": "Extension Displays active pokemon showdown information next to your battle!",
   "scripts": {

@@ -4,7 +4,7 @@ Welcome the Pokeinfo! Pokeinfo is an extension set up to connect to a pokemon sh
 
 ## Install Extension
 
-- Chrome extension coming soon!
+- [Chrome extension](https://chrome.google.com/webstore/detail/pokeinfo-showdown/bkfbliefifmflhjcggbgfimmodpiclgk?hl=en)
 - Firefox extension coming soon!
 
 ## To Install locally
